@@ -3,6 +3,11 @@
 A set of mods for [Resonite](https://resonite.com/) that applies patches to allow the pre-release Splittening builds to run on Linux through Proton.
 
 ## Installation
+***NOTE:*** _This assumes that you have not already performed a setup for running a hybrid native+wine build._
+_If you have already done so, you need to move the contents of the `Renderer/Renderite` folder_
+_back into the `Renderer` folder directly, and revert the changes to `Renderite.Renderer.exe`_
+_(e.g. by making Steam validate the files of Resonite)_
+
 1. (Recommended) Back up your Proton prefix by making a copy of the folder
    `$HOME/.local/share/Steam/steamapps/compatdata/2519830`
 1. (Optional) Delete the Proton prefix and launch the game in order to start with a fresh prefix
