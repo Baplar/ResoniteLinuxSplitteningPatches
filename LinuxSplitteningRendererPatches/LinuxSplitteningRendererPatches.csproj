@@ -1,0 +1,69 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>netstandard20</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+		<RootNamespace>LinuxSplitteningRendererPatches</RootNamespace>
+		<LangVersion>default</LangVersion>
+		<IsPackable>false</IsPackable>
+		<AssemblyVersion>1.0.0</AssemblyVersion>
+		<FileVersion>1.0.0</FileVersion>
+		<NeutralLanguage>en-US</NeutralLanguage>
+		<AssemblyName>LinuxSplitteningRendererPatches</AssemblyName>
+		<LangVersion>latest</LangVersion>
+		<ImplicitUsings>disable</ImplicitUsings>
+		<!-- Change CopyToMods to true if you'd like builds to be moved into the Mods folder automatically-->
+		<CopyToMods Condition="'$(CopyToMods)'==''">true</CopyToMods>
+		<DebugType Condition="'$(Configuration)'=='Debug'">embedded</DebugType>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(ResonitePath)'==''">
+		<!-- If you don't want to provide a ResonitePath in dotnet build, you can specify one here -->
+		<ResonitePath>$(MSBuildThisFileDirectory)Resonite/</ResonitePath>
+		<ResonitePath Condition="Exists('C:\Program Files (x86)\Steam\steamapps\common\Resonite\')">C:\Program Files (x86)\Steam\steamapps\common\Resonite\</ResonitePath>
+		<ResonitePath Condition="Exists('$(HOME)/.steam/steam/steamapps/common/Resonite/')">$(HOME)/.steam/steam/steamapps/common/Resonite/</ResonitePath>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Reference Include="MelonLoader">
+			<HintPath>$(ResonitePath)Renderer/MelonLoader/net35/MelonLoader.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="HarmonyLib">
+			<HintPath>$(ResonitePath)Renderer/MelonLoader/net35/0Harmony.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="Renderite.Unity">
+			<HintPath>$(ResonitePath)Renderer/Renderite.Renderer_Data/Managed/Renderite.Unity.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="Renderite.Shared">
+			<HintPath>$(ResonitePath)Renderer/Renderite.Renderer_Data/Managed/Renderite.Shared.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="Cloudtoid.Interprocess">
+			<HintPath>$(ResonitePath)Renderer/Renderite.Renderer_Data/Managed/YellowDogMan.Cloudtoid.Interprocess.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+	</ItemGroup>
+
+	<PropertyGroup>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Include="LinuxSplitteningRendererPatches.cs" />
+		<Compile Include="RenderiteUnity_Patcher.cs" />
+	</ItemGroup>
+
+	<Target Name="CopyToBin" AfterTargets="PostBuildEvent">
+		<Message Text="Copying $(TargetFileName) to $(TargetDir)../../../../dist" Importance="high" />
+		<Copy SourceFiles="$(TargetDir)$(TargetFileName)" DestinationFolder="$(TargetDir)../../../../dist/Renderer/Mods" ContinueOnError="true" />
+	</Target>
+
+	<Target Name="CopyToMods" AfterTargets="PostBuildEvent" Condition="'$(CopyToMods)'=='true'">
+		<Message Text="Attempting to copy $(TargetFileName) to $(ResonitePath)Renderer/Mods" Importance="high" />
+		<Copy SourceFiles="$(TargetDir)$(TargetFileName)" DestinationFolder="$(ResonitePath)Renderer/Mods" ContinueOnError="true" />
+	</Target>
+</Project>

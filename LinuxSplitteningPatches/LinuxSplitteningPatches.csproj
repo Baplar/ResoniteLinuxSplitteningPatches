@@ -1,11 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<RootNamespace>ExampleMod</RootNamespace>
-		<AssemblyName>ExampleMod</AssemblyName>
+		<RootNamespace>LinuxSplitteningPatches</RootNamespace>
+		<AssemblyName>LinuxSplitteningPatches</AssemblyName>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-		<TargetFramework>net472</TargetFramework>
+		<TargetFramework>net9.0</TargetFramework>
 		<FileAlignment>512</FileAlignment>
-		<LangVersion>10.0</LangVersion>
+		<!-- <LangVersion>10.0</LangVersion> -->
 		<Nullable>enable</Nullable>
 		<Deterministic>true</Deterministic>
 		<!-- Change CopyToMods to true if you'd like builds to be moved into the Mods folder automatically-->
@@ -30,10 +30,35 @@
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="FrooxEngine">
-			<HintPath>$(ResonitePath)Resonite_Data\Managed\FrooxEngine.dll</HintPath>
+			<HintPath>$(ResonitePath)FrooxEngine.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="Elements.Core">
+			<HintPath>$(ResonitePath)Elements.Core.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="Hardware.Info">
+			<HintPath>$(ResonitePath)Hardware.Info.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="Renderite.Shared">
+			<HintPath>$(ResonitePath)Renderite.Shared.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="Cloudtoid.Interprocess">
+			<HintPath>$(ResonitePath)YellowDogMan.Cloudtoid.Interprocess.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
 	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="BouncyCastle.Cryptography" Version="2.6.1" />
+	</ItemGroup>
+
+	<Target Name="CopyToBin" AfterTargets="PostBuildEvent">
+		<Message Text="Copying $(TargetFileName) to $(TargetDir)../../../../dist" Importance="high" />
+		<Copy SourceFiles="$(TargetDir)$(TargetFileName)" DestinationFolder="$(TargetDir)../../../../dist/rml_mods" ContinueOnError="true" />
+	</Target>
 
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(CopyToMods)'=='true'">
 		<Message Text="Attempting to copy $(TargetFileName) to $(ResonitePath)rml_mods" Importance="high" />
