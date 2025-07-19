@@ -26,23 +26,27 @@
 
 	<ItemGroup>
 		<Reference Include="MelonLoader">
-			<HintPath>$(ResonitePath)Renderer/MelonLoader/net35/MelonLoader.dll</HintPath>
+			<HintPath>$(ResonitePath)Renderer/Renderite/MelonLoader/net35/MelonLoader.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="HarmonyLib">
-			<HintPath>$(ResonitePath)Renderer/MelonLoader/net35/0Harmony.dll</HintPath>
+			<HintPath>$(ResonitePath)Renderer/Renderite/MelonLoader/net35/0Harmony.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="System.Memory">
+			<HintPath>$(ResonitePath)Renderer/Renderite/Renderite.Renderer_Data/Managed/System.Memory.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="Renderite.Unity">
-			<HintPath>$(ResonitePath)Renderer/Renderite.Renderer_Data/Managed/Renderite.Unity.dll</HintPath>
+			<HintPath>$(ResonitePath)Renderer/Renderite/Renderite.Renderer_Data/Managed/Renderite.Unity.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="Renderite.Shared">
-			<HintPath>$(ResonitePath)Renderer/Renderite.Renderer_Data/Managed/Renderite.Shared.dll</HintPath>
+			<HintPath>$(ResonitePath)Renderer/Renderite/Renderite.Renderer_Data/Managed/Renderite.Shared.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="Cloudtoid.Interprocess">
-			<HintPath>$(ResonitePath)Renderer/Renderite.Renderer_Data/Managed/YellowDogMan.Cloudtoid.Interprocess.dll</HintPath>
+			<HintPath>$(ResonitePath)Renderer/Renderite/Renderite.Renderer_Data/Managed/YellowDogMan.Cloudtoid.Interprocess.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
 	</ItemGroup>
@@ -55,6 +59,8 @@
 	<ItemGroup>
 		<Compile Include="LinuxSplitteningRendererPatches.cs" />
 		<Compile Include="RenderiteUnity_Patcher.cs" />
+		<Compile Include="Interprocess_Patcher.cs" />
+		<Compile Include="Util.cs" />
 	</ItemGroup>
 
 	<Target Name="CopyToBin" AfterTargets="PostBuildEvent">

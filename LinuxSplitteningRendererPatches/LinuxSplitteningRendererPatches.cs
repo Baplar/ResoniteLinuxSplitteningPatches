@@ -10,7 +10,7 @@ namespace LinuxSplitteningRendererPatches
         public override void OnInitializeMelon()
         {
             HarmonyInstance.PatchAll();
-            LoggerInstance.Msg("Initialized.");
+            MelonLogger.Msg("Initialized.");
         }
     }
 }
