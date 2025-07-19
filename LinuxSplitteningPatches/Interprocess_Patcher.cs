@@ -69,11 +69,11 @@ public static class Subscriber_DequeueCore_Patch {
 
             Type Subscriber = AccessTools.TypeByName("Cloudtoid.Interprocess.Subscriber");
             MethodInfo TryDequeueImpl = AccessTools.Method(Subscriber, "TryDequeueImpl");
-            object?[] parameters = [resultBuffer, cancellation, null];
+            object[] parameters = [resultBuffer, cancellation, null];
 
             while (!(TryDequeueImpl.Invoke(__instance, parameters) as bool?).GetValueOrDefault(false)) {
-                if (!Thread.Yield()) {
-                    Wait.Invoke(___signal, [1]);
+                if (Wait.Invoke(___signal, [1]) as bool? == true) {
+                    ResoniteMod.Msg("The semaphore did a thing");
                 }
             }
             if (parameters[2] != null && parameters[2] is ReadOnlyMemory<byte> memory) {

@@ -5,8 +5,8 @@
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<TargetFramework>net9.0</TargetFramework>
 		<FileAlignment>512</FileAlignment>
-		<!-- <LangVersion>10.0</LangVersion> -->
-		<Nullable>enable</Nullable>
+		<LangVersion>13.0</LangVersion>
+		<Nullable>disable</Nullable>
 		<Deterministic>true</Deterministic>
 		<!-- Change CopyToMods to true if you'd like builds to be moved into the Mods folder automatically-->
 		<CopyToMods Condition="'$(CopyToMods)'==''">true</CopyToMods>

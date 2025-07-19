@@ -1,17 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>netstandard20</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>disable</Nullable>
 		<RootNamespace>LinuxSplitteningRendererPatches</RootNamespace>
-		<LangVersion>default</LangVersion>
-		<IsPackable>false</IsPackable>
-		<AssemblyVersion>1.0.0</AssemblyVersion>
-		<FileVersion>1.0.0</FileVersion>
-		<NeutralLanguage>en-US</NeutralLanguage>
 		<AssemblyName>LinuxSplitteningRendererPatches</AssemblyName>
-		<LangVersion>latest</LangVersion>
-		<ImplicitUsings>disable</ImplicitUsings>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<TargetFramework>net472</TargetFramework>
+		<LangVersion>13.0</LangVersion>
+		<Nullable>disable</Nullable>
 		<!-- Change CopyToMods to true if you'd like builds to be moved into the Mods folder automatically-->
 		<CopyToMods Condition="'$(CopyToMods)'==''">true</CopyToMods>
 		<DebugType Condition="'$(Configuration)'=='Debug'">embedded</DebugType>
@@ -51,25 +45,14 @@
 		</Reference>
 	</ItemGroup>
 
-	<PropertyGroup>
-		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-	</PropertyGroup>
-
-	<ItemGroup>
-		<Compile Include="LinuxSplitteningRendererPatches.cs" />
-		<Compile Include="RenderiteUnity_Patcher.cs" />
-		<Compile Include="Interprocess_Patcher.cs" />
-		<Compile Include="Util.cs" />
-	</ItemGroup>
-
 	<Target Name="CopyToBin" AfterTargets="PostBuildEvent">
 		<Message Text="Copying $(TargetFileName) to $(TargetDir)../../../../dist" Importance="high" />
 		<Copy SourceFiles="$(TargetDir)$(TargetFileName)" DestinationFolder="$(TargetDir)../../../../dist/Renderer/Mods" ContinueOnError="true" />
 	</Target>
 
-	<Target Name="CopyToMods" AfterTargets="PostBuildEvent" Condition="'$(CopyToMods)'=='true'">
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(CopyToMods)'=='true'">
 		<Message Text="Attempting to copy $(TargetFileName) to $(ResonitePath)Renderer/Mods" Importance="high" />
 		<Copy SourceFiles="$(TargetDir)$(TargetFileName)" DestinationFolder="$(ResonitePath)Renderer/Mods" ContinueOnError="true" />
+		<Copy SourceFiles="$(TargetDir)$(TargetFileName)" DestinationFolder="$(ResonitePath)Renderer/Renderite/Mods" ContinueOnError="true" />
 	</Target>
 </Project>

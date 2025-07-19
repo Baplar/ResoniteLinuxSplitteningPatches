@@ -1,5 +1,4 @@
 using HarmonyLib;
-using HarmonyLib.Tools;
 using MelonLoader;
 using System;
 using System.Reflection;
@@ -14,7 +13,7 @@ public static class CreateWaiter_Patch
 
     public static void Postfix(string name, ref object __result)
     {
-        MelonLogger.Msg("CreateWaiter_Patch");
+        Melon<LinuxSplitteningRendererPatches>.Logger.Warning("CreateWaiter_Patch");
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) && Util.IsWine)
         {
             Type SemaphoreLinux = AccessTools.TypeByName("Cloudtoid.Interprocess.Semaphore.Linux.SemaphoreLinux");
@@ -29,7 +28,7 @@ public static class CreateReleaser_Patch
 
     public static void Postfix(string name, ref object __result)
     {
-        MelonLogger.Msg("CreateReleaser_Patch");
+        Melon<LinuxSplitteningRendererPatches>.Logger.Warning("CreateReleaser_Patch");
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) && Util.IsWine)
         {
             Type SemaphoreLinux = AccessTools.TypeByName("Cloudtoid.Interprocess.Semaphore.Linux.SemaphoreLinux");
@@ -49,7 +48,7 @@ public static class Subscriber_DequeueCore_Patch
         ref ReadOnlyMemory<byte> __result,
         CancellationTokenSource ___cancellationSource,
         CountdownEvent ___countdownEvent,
-        object ___signal
+        ref object ___signal
     )
     {
         if (!semaphoreReplaced)
@@ -79,12 +78,12 @@ public static class Subscriber_DequeueCore_Patch
 
             Type Subscriber = AccessTools.TypeByName("Cloudtoid.Interprocess.Subscriber");
             MethodInfo TryDequeueImpl = AccessTools.Method(Subscriber, "TryDequeueImpl");
-            object?[] parameters = [resultBuffer, cancellation, null];
+            object[] parameters = [resultBuffer, cancellation, null];
 
             while (!(TryDequeueImpl.Invoke(__instance, parameters) as bool?).GetValueOrDefault(false))
             {
-                if (!Thread.Yield()){
-                    Wait.Invoke(___signal, [1]);
+                if (Wait.Invoke(___signal, [1]) as bool? == true) {
+                    Melon<LinuxSplitteningRendererPatches>.Logger.Msg("The semaphore did a thing");
                 }
             }
             if (parameters[2] != null && parameters[2] is ReadOnlyMemory<byte> memory)

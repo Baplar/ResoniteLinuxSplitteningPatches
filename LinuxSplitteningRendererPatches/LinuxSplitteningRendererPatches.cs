@@ -5,12 +5,5 @@
 
 namespace LinuxSplitteningRendererPatches
 {
-    public class LinuxSplitteningRendererPatches : MelonMod
-    {
-        public override void OnInitializeMelon()
-        {
-            HarmonyInstance.PatchAll();
-            MelonLogger.Msg("Initialized.");
-        }
-    }
+    public class LinuxSplitteningRendererPatches : MelonMod {}
 }

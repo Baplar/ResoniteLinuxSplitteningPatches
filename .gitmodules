@@ -2,3 +2,6 @@
 	path = Hardware.Info
 	url = https://github.com/bredo228/Hardware.Info.git
 	branch = janky
+[submodule "interprocess"]
+	path = interprocess
+	url = https://github.com/Yellow-Dog-Man/interprocess.git
