@@ -19,7 +19,7 @@ _(e.g. by making Steam validate the files of Resonite)_
    _If the installation of .NET 4.0 or 4.5 fails, you can try to delete the prefix and start again on a new fresh prefix._
 4. Install the prerelease version of [ResoniteModLoader](https://github.com/resonite-modding-group/ResoniteModLoader/releases) in the root of your Resonite install folder. This should be at `$HOME/.local/share/Steam/steamapps/common/Resonite` for a default install
 2. Install [MelonLoader](https://melonwiki.xyz/) in the `Renderer` sub-folder of your Resonite install folder. This should be at `$HOME/.local/share/Steam/steamapps/common/Resonite/Renderer` for a default install.
-6. Download [the latest release of the mod](https://github.com/Baplar/ResoniteLinuxSplitteningPatches/releases/download/v0.1.0/ResoniteLinuxSplitteningPatches.zip).
+6. Download [the latest release of the mod](https://github.com/Baplar/ResoniteLinuxSplitteningPatches/releases/download/v0.1.1/ResoniteLinuxSplitteningPatches.zip).
 7. Extract the contents of the downloaded zip file into your Resonite install folder.
 8. Add `-LoadAssembly Libraries/ResoniteModLoader.dll` at the end of your launch options
 in the Steam properties of Resonite (if you already have some, make sure these go after `%command%`)
