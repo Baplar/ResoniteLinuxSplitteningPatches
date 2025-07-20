@@ -9,6 +9,7 @@
 		<!-- Change CopyToMods to true if you'd like builds to be moved into the Mods folder automatically-->
 		<CopyToMods Condition="'$(CopyToMods)'==''">true</CopyToMods>
 		<DebugType Condition="'$(Configuration)'=='Debug'">embedded</DebugType>
+		<RootDir>$(MSBuildProjectDirectory)/../</RootDir>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(ResonitePath)'==''">
@@ -17,6 +18,11 @@
 		<ResonitePath Condition="Exists('C:\Program Files (x86)\Steam\steamapps\common\Resonite\Renderer\')">C:\Program Files (x86)\Steam\steamapps\common\Resonite\Renderer\</ResonitePath>
 		<ResonitePath Condition="Exists('$(HOME)/.steam/steam/steamapps/common/Resonite/Renderer/')">$(HOME)/.steam/steam/steamapps/common/Resonite/Renderer/</ResonitePath>
 		<ResonitePath Condition="Exists('$(ResonitePath)/Renderite/Renderite.Renderer.exe')">$(ResonitePath)/Renderite/</ResonitePath>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<RendererSubPath>Renderer/</RendererSubPath>
+		<RendererSubPath Condition="$(ResonitePath.Contains('Renderite'))">$(RendererSubPath)Renderite/</RendererSubPath>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -46,13 +52,21 @@
 		</Reference>
 	</ItemGroup>
 
+	<ItemGroup>
+        <InterprocessBinFiles Include="$(RootDir)/interprocess/src/Interprocess/bin/Debug/netstandard2.0/YellowDogMan.Cloudtoid.Interprocess.*" />
+    </ItemGroup>
+
 	<Target Name="CopyToBin" AfterTargets="PostBuildEvent">
-		<Message Text="Copying $(TargetFileName) to $(TargetDir)../../../../dist" Importance="high" />
-		<Copy SourceFiles="$(TargetDir)$(TargetFileName)" DestinationFolder="$(TargetDir)../../../../dist/Renderer/Mods" ContinueOnError="true" />
+		<Message Text="Copying $(TargetFileName) to $(RootDir)/dist" Importance="high" />
+		<Copy SourceFiles="$(TargetDir)$(TargetFileName)" DestinationFolder="$(RootDir)/dist/Renderer/Mods" ContinueOnError="true" />
+		<Copy SourceFiles="@(InterprocessBinFiles)" DestinationFolder="$(RootDir)/dist/$(RendererSubPath)/Renderite.Renderer_Data/Managed" ContinueOnError="true" />
+		<Copy SourceFiles="$(RootDir)/interprocess/src/libsemwine/libsemwine.dll.so" DestinationFolder="$(RootDir)/dist/$(RendererSubPath)/Renderite.Renderer_Data/Managed" ContinueOnError="true" />
 	</Target>
 
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(CopyToMods)'=='true'">
 		<Message Text="Attempting to copy $(TargetFileName) to $(ResonitePath)Mods" Importance="high" />
 		<Copy SourceFiles="$(TargetDir)$(TargetFileName)" DestinationFolder="$(ResonitePath)Mods" ContinueOnError="true" />
+		<Copy SourceFiles="@(InterprocessBinFiles)" DestinationFolder="$(ResonitePath)/Renderite.Renderer_Data/Managed" ContinueOnError="true" />
+		<Copy SourceFiles="$(RootDir)/interprocess/src/libsemwine/libsemwine.dll.so" DestinationFolder="$(ResonitePath)/Renderite.Renderer_Data/Managed" ContinueOnError="true" />
 	</Target>
 </Project>

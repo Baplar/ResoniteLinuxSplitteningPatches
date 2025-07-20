@@ -11,6 +11,7 @@
 		<!-- Change CopyToMods to true if you'd like builds to be moved into the Mods folder automatically-->
 		<CopyToMods Condition="'$(CopyToMods)'==''">true</CopyToMods>
 		<DebugType Condition="'$(Configuration)'=='Debug'">embedded</DebugType>
+		<RootDir>$(MSBuildProjectDirectory)/..</RootDir>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(ResonitePath)'==''">
@@ -63,13 +64,23 @@
 	  <PackageReference Include="BouncyCastle.Cryptography" Version="2.6.1" />
 	</ItemGroup>
 
+	<ItemGroup>
+        <InterprocessBinFiles Include="$(RootDir)/interprocess/src/Interprocess/bin/Debug/net9.0/YellowDogMan.Cloudtoid.Interprocess.*" />
+    </ItemGroup>
+
 	<Target Name="CopyToBin" AfterTargets="PostBuildEvent">
-		<Message Text="Copying $(TargetFileName) to $(TargetDir)../../../../dist" Importance="high" />
-		<Copy SourceFiles="$(TargetDir)$(TargetFileName)" DestinationFolder="$(TargetDir)../../../../dist/rml_mods" ContinueOnError="true" />
+		<Message Text="Copying $(TargetFileName) to $(RootDir)/dist" Importance="high" />
+		<Copy SourceFiles="$(TargetDir)$(TargetFileName)" DestinationFolder="$(RootDir)/dist/rml_mods" ContinueOnError="true" />
+		<Copy SourceFiles="$(RootDir)/Hardware.Info/Hardware.Info/bin/Debug/netstandard2.0/Hardware.Info.dll" DestinationFolder="$(RootDir)/dist" ContinueOnError="true" />
+		<Copy SourceFiles="@(InterprocessBinFiles)" DestinationFolder="$(RootDir)/dist" ContinueOnError="true" />
+		<Copy SourceFiles="$(RootDir)/interprocess/src/libsemwine/libsemwine.dll.so" DestinationFolder="$(RootDir)/dist" ContinueOnError="true" />
 	</Target>
 
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(CopyToMods)'=='true'">
 		<Message Text="Attempting to copy $(TargetFileName) to $(ResonitePath)rml_mods" Importance="high" />
 		<Copy SourceFiles="$(TargetDir)$(TargetFileName)" DestinationFolder="$(ResonitePath)rml_mods" ContinueOnError="true" />
+		<Copy SourceFiles="$(RootDir)/Hardware.Info/Hardware.Info/bin/Debug/netstandard2.0/Hardware.Info.dll" DestinationFolder="$(ResonitePath)" ContinueOnError="true" />		
+		<Copy SourceFiles="@(InterprocessBinFiles)" DestinationFolder="$(ResonitePath)" ContinueOnError="true" />
+		<Copy SourceFiles="$(RootDir)/interprocess/src/libsemwine/libsemwine.dll.so" DestinationFolder="$(RootDir)/dist" ContinueOnError="true" />
 	</Target>
 </Project>
