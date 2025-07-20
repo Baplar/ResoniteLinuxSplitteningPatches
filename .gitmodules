@@ -4,4 +4,5 @@
 	branch = janky
 [submodule "interprocess"]
 	path = interprocess
-	url = https://github.com/Yellow-Dog-Man/interprocess.git
+	url = https://github.com/baplar/interprocess.git
+	branch = libsemwine
