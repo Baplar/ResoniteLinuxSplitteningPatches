@@ -45,7 +45,7 @@ mv -b MonoBleedingEdge Renderite.Renderer* Unity* Renderite
 - Create the modified renderer script to run the Proton version that you selected for Resonite in Steam
 ```sh
 cd $HOME/.local/share/Steam/steamapps/common/Resonite/Renderer
-cat > Renderite.Renderer.exe <<'EOF'
+cat > Renderite.Renderer.sh <<'EOF'
 #!/usr/bin/env bash
 cd "./Renderer/Renderite" || exit
 PROTON_BIN="$HOME/.local/share/Steam/steamapps/common/Proton - Experimental/proton"
@@ -60,7 +60,8 @@ IFS="$IFS_BACKUP"
 echo "Using proton binary: $PROTON_BIN"
 exec "$PROTON_BIN" run Renderite.Renderer.exe "$@"
 EOF
-chmod +x Renderite.Renderer.exe
+chmod +x Renderite.Renderer.sh
+cp Renderite.Renderer.sh Renderite.Renderer.exe
 ```
 - Launch the game from Steam, it should start!
 
