@@ -19,11 +19,13 @@ or by using a [Proton version for improved performance and compatibility](docs/N
 
 ### Flatpak build
 
-It is also possible to run Resonite in the [Flatpak version of Steam](docs/FlatpakProton.md).
+It is also possible to run Resonite in the Flatpak version of Steam.
 
-This setup is almost identical to the one for the native Linux Proton build,
-with a couple adjustments to account for the fact that the game can not access system-level utilities
-such as the dotnet runtime or wine.
+The setup is exactly identical to the one for the [native Linux Proton build](docs/NativeProton.md).
+
+You may only need to adjust the install path of your Steam library,
+which may be in `$HOME/.var/app/com.valvesoftware.Steam/.local/share/Steam/steamapps`
+instead of `$HOME/.local/share/Steam/steamapps` depending on your setup.
 
 ## Full Proton build
 

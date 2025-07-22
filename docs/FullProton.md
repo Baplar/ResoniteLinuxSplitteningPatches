@@ -1,6 +1,6 @@
 # Full Proton setup
 
-_All of the paths in the code snippets below assume your Steam library is setup at the default location `$HOME/.local/share/Steam`. If your setup is different, adapt the paths accordingly._
+_All of the paths in the code snippets below assume your Steam library is setup at the default location `$HOME/.local/share/Steam/steamapps`. If your setup is different, adapt the paths accordingly._
 
 1. (Recommended) Back up your Proton prefix by making a copy of the folder
    `$HOME/.local/share/Steam/steamapps/compatdata/2519830`

@@ -1,8 +1,7 @@
 # Native setup - Proton
 
-_All of the paths in the code snippets below assume your Steam library is setup at the default location `$HOME/.local/share/Steam`. If your setup is different, adapt the paths accordingly._
+_All of the paths in the code snippets below assume your Steam library is setup at the default location`$HOME/.local/share/Steam/steamapps`. If your setup is different, adapt the paths accordingly._
 
-- Make sure `dotnet-runtime` (or your distro’s equivalent) is installed on your system
 - (Optional) Make a backup of your current Proton prefix, to be able to restore your release environment
 ```sh
 cd $HOME/.local/share/Steam/steamapps/compatdata/
@@ -26,9 +25,16 @@ cp -r 2519830{,-release}
      ],
      "configProperties": {
 ```
+- Download the .NET runtime in your Resonite install folder
+```sh
+cd $HOME/.local/share/Steam/steamapps/common/Resonite
+wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
+chmod +x dotnet-install.sh
+./dotnet-install.sh --channel 9.0 --runtime dotnet --install-dir dotnet-runtime
+```
 - Open the Steam properties of Resonite, and set the launch options
 ```sh
-dotnet Resonite.dll > "Logs/$(hostname) - linux-dotnet - $(date +"%F %H_%M_%S").log" 2>&1 # %command%
+dotnet-runtime/dotnet Resonite.dll > "Logs/$(hostname) - linux-dotnet - $(date +"%F %H_%M_%S").log" 2>&1 # %command%
 ```
 - In the Resonite install directory, move all of the contents of the `Renderer` folder into a `Renderite` subfolder
 ```sh
@@ -48,11 +54,6 @@ cd "./Renderer/Renderite" || exit
 $HOME/.local/share/Steam/steamapps/common/Proton\\ -\\ Experimental/proton run Renderite.Renderer.exe "\$@"
 EOF
 chmod +x Renderite.Renderer.exe
-```
-  - Note: If you have `protontricks` installed and you don’t want to use a fixed path for your proton build,
-  you can use `protontricks-launch` instead:
-```sh
-protontricks-launch --no-term --appid 2519830 Renderite.Renderer.exe "\$@"
 ```
 - Launch the game from Steam, it should start!
 

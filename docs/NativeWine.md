@@ -1,8 +1,7 @@
 # Native setup - System Wine
 
-_All of the paths in the code snippets below assume your Steam library is setup at the default location `$HOME/.local/share/Steam`. If your setup is different, adapt the paths accordingly._
+_All of the paths in the code snippets below assume your Steam library is setup at the default location `$HOME/.local/share/Steam/steamapps`. If your setup is different, adapt the paths accordingly._
 
-- Make sure `dotnet-runtime` (or your distro’s equivalent) is installed on your system
 - Switch to the prerelease beta on Steam
 - Install the necessary dependencies in your system Wine prefix
 ```sh
@@ -24,9 +23,16 @@ winetricks dxvk dotnet48
      ],
      "configProperties": {
 ```
+- Download the .NET runtime in your Resonite install folder
+```sh
+cd $HOME/.local/share/Steam/steamapps/common/Resonite
+wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
+chmod +x dotnet-install.sh
+./dotnet-install.sh --channel 9.0 --runtime dotnet --install-dir dotnet-runtime
+```
 - Open the Steam properties of Resonite, and set the launch options
 ```sh
-dotnet Resonite.dll > "Logs/$(hostname) - linux-dotnet - $(date +"%F %H_%M_%S").log" 2>&1 # %command%
+dotnet-runtime/dotnet Resonite.dll > "Logs/$(hostname) - linux-dotnet - $(date +"%F %H_%M_%S").log" 2>&1 # %command%
 ```
 - Launch the game from Steam, it should start!
 
