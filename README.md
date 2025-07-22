@@ -11,7 +11,7 @@ It is possible to run the main FrooxEngine process in the native Linux .NET runt
 This is most likely going to be the approach that is taken for the official release of the Splittening, and thus we recommend this method.
 
 It is possible to run this setup by using the [system-installed Wine version](docs/NativeWine.md),
-or by using a [Proton version for improved performance and compatibility](docs/NativeProton.md).
+or by using a [Proton version for improved performance and compatibility](docs/NativeProton.md) (recommended).
 
 - Please note that, in addition to all the features still in development, there are a couple of features that work on Windows, but not yet on Linux. Notably:
   - Audio output does not work (the CSCore library only supports Windows, alternatives are being considered)
