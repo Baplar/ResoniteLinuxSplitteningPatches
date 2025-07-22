@@ -1,0 +1,41 @@
+# Native setup - System Wine
+
+_All of the paths in the code snippets below assume your Steam library is setup at the default location `$HOME/.local/share/Steam`. If your setup is different, adapt the paths accordingly._
+
+- Make sure `dotnet-runtime` (or your distro’s equivalent) is installed on your system
+- Switch to the prerelease beta on Steam
+- Install the necessary dependencies in your system Wine prefix
+```sh
+winetricks dxvk dotnet48
+```
+- Edit the file `Resonite.runtimeconfig.json` to remove the WindowsDesktop framework dependency
+```patch
+--- $HOME/.local/share/Steam/steamapps/common/Resonite/Resonite.runtimeconfig.json	2025-07-16 09:44:51.509893740 +0200
++++ $HOME/.local/share/Steam/steamapps/common/Resonite/Resonite.runtimeconfig.json	2025-07-16 12:34:45.303342913 +0200
+@@ -5,10 +5,6 @@
+       {
+         "name": "Microsoft.NETCore.App",
+         "version": "9.0.0"
+-      },
+-      {
+-        "name": "Microsoft.WindowsDesktop.App",
+-        "version": "9.0.0"
+       }
+     ],
+     "configProperties": {
+```
+- Open the Steam properties of Resonite, and set the launch options
+```sh
+dotnet Resonite.dll > "Logs/$(hostname) - linux-dotnet - $(date +"%F %H_%M_%S").log" 2>&1 # %command%
+```
+- Launch the game from Steam, it should start!
+
+## Patches
+
+You should also install additional performance patches in order to get a good experience.
+
+This is a bit more experimental, as it replaces some of the DLLs of the game.
+But this is a real boon for getting more FPS, and some variation of these changes will most likely end up in the official release. 
+
+- Download [the latest release of the native patches](https://github.com/Baplar/ResoniteLinuxSplitteningPatches/releases/download/v0.1.3/NativeWinePatches.zip).
+- Extract the contents of the downloaded zip file into your Resonite install folder.
