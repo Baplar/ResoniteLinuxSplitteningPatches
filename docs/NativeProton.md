@@ -42,16 +42,23 @@ cd $HOME/.local/share/Steam/steamapps/common/Resonite/Renderer
 mkdir -p Renderite
 mv -b MonoBleedingEdge Renderite.Renderer* Unity* Renderite
 ```
-- Find the location of your preferred Proton version. For example, Proton Experimental is usually located in
-`$HOME/.local/share/Steam/steamapps/common/Proton\ -\ Experimental/proton`
-- Create the modified renderer script, using the location of the proton executable found in the previous step
-_(mind the double backslashes for escaping spaces!)_
+- Create the modified renderer script to run the Proton version that you selected for Resonite in Steam
 ```sh
 cd $HOME/.local/share/Steam/steamapps/common/Resonite/Renderer
-cat > Renderite.Renderer.exe <<EOF
+cat > Renderite.Renderer.exe <<'EOF'
 #!/usr/bin/env bash
 cd "./Renderer/Renderite" || exit
-$HOME/.local/share/Steam/steamapps/common/Proton\\ -\\ Experimental/proton run Renderite.Renderer.exe "\$@"
+PROTON_BIN="$HOME/.local/share/Steam/steamapps/common/Proton - Experimental/proton"
+IFS_BACKUP="$IFS"
+IFS=":"
+for COMPAT_PATH in $STEAM_COMPAT_TOOL_PATHS; do
+    if [ -f "$COMPAT_PATH/proton" ]; then
+        PROTON_BIN="$COMPAT_PATH/proton"
+    fi 
+done
+IFS="$IFS_BACKUP"
+echo "Using proton binary: $PROTON_BIN"
+exec "$PROTON_BIN" run Renderite.Renderer.exe "$@"
 EOF
 chmod +x Renderite.Renderer.exe
 ```
