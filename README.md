@@ -17,6 +17,14 @@ or by using a [Proton version for improved performance and compatibility](docs/N
   - Audio output does not work (the CSCore library only supports Windows, alternatives are being considered)
   - The clipboard OS integration can not manage rich data like images or files (copying plain text to and from Resonite *might* work, but I can not confirm yet)
 
+### Flatpak build
+
+It is also possible to run Resonite in the [Flatpak version of Steam](docs/FlatpakProton.md).
+
+This setup is almost identical to the one for the native Linux Proton build,
+with a couple adjustments to account for the fact that the game can not access system-level utilities
+such as the dotnet runtime or wine.
+
 ## Full Proton build
 
 It is also possible to run all of the Resonite processes [directly within Proton](docs/FullProton.md).
