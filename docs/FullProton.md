@@ -2,18 +2,23 @@
 
 _All of the paths in the code snippets below assume your Steam library is setup at the default location `$HOME/.local/share/Steam/steamapps`. If your setup is different, adapt the paths accordingly._
 
-- (Recommended) Back up your Proton prefix by making a copy of the folder
-  `$HOME/.local/share/Steam/steamapps/compatdata/2519830`
-- (Optional) Delete the Proton prefix and launch the game in order to start with a fresh prefix
+- (Recommended) Back up your Proton prefix
+```sh
+  cp $HOME/.local/share/Steam/steamapps/compatdata/2519830{,-release}
+```
+- (Optional) Delete the Proton prefix to start with a fresh prefix
   (_this may prevent winetricks from failing to install .NET 4.0_)
-- Setup the necessary dependencies in your Proton prefix with winetricks:
+```
+  rm -rf $HOME/.local/share/Steam/steamapps/compatdata/2519830
+```
+- Launch Resonite normally, to let it "warm up" the prefix with the required dependencies
+- Setup the necessary additional dependencies in your Proton prefix with winetricks:
   ```sh
   WINEPREFIX="$HOME/.local/share/Steam/steamapps/compatdata/2519830/pfx" winetricks dxvk winhttp vcrun2022 dotnet48 dotnetdesktop9
   ```
   _If the installation of .NET 4.0 or 4.5 fails, you can try to delete the prefix and start again on a new fresh prefix._
-- Install the prerelease version of [ResoniteModLoader](https://github.com/resonite-modding-group/ResoniteModLoader/releases) in the root of your Resonite install folder. This should be at `$HOME/.local/share/Steam/steamapps/common/Resonite` for a default install
-- Install [MelonLoader](https://melonwiki.xyz/) in the `Renderer` sub-folder of your Resonite install folder. This should be at `$HOME/.local/share/Steam/steamapps/common/Resonite/Renderer` for a default install.
 - Download [the latest release of the proton patches](https://github.com/Baplar/ResoniteLinuxSplitteningPatches/releases/download/v0.1.3/FullProtonPatches.zip).
+  It includes the patched libraries, as well as [ResoniteModLoader](https://github.com/resonite-modding-group/ResoniteModLoader/releases) (used to patch FrooxEngine) and [MelonLoader](https://melonwiki.xyz/) (used to patch the Unity renderer).
 - Extract the contents of the downloaded zip file into your Resonite install folder.
 - Set your launch options to run both ResoniteModLoader and MelonLoader
 ```
