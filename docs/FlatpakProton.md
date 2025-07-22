@@ -6,6 +6,7 @@ with a couple adjustments needed to handle the special case of Flatpak.
 _All of the paths in the code snippets below assume:_
 - _Your Steam install folder is setup at the default location `$HOME/.var/app/com.valvesoftware.Steam/.local/share/Steam/`_
 - _Your Steam library is located at the default location as well_
+
 _If your setup is different, adapt the paths accordingly._
 
 
@@ -36,6 +37,7 @@ cp -r 2519830{,-release}
 ```sh
 cd $HOME/.var/app/com.valvesoftware.Steam/.local/share/Steam/steamapps/common/Resonite
 wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
+chmod +x dotnet-install.sh
 ./dotnet-install.sh --channel 9.0 --runtime dotnet --install-dir dotnet-runtime
 ```
 - Open the Steam properties of Resonite, and set the launch options
