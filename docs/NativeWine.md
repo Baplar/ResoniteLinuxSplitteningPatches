@@ -34,6 +34,11 @@ chmod +x dotnet-install.sh
 ```sh
 dotnet-runtime/dotnet Resonite.dll > "Logs/$(hostname) - linux-dotnet - $(date +"%F %H_%M_%S").log" 2>&1 # %command%
 ```
+- this launch options requires Logs folder,so create before launch it
+```sh
+cd $HOME/.local/share/Steam/steamapps/common/Resonite/Renderer
+mkdir -p Logs
+```
 - Launch the game from Steam, it should start!
 
 ## Patches
