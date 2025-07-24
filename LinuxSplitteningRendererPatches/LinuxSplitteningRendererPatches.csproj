@@ -64,13 +64,13 @@
 		<Message Text="Copying $(TargetFileName) to $(RootDir)/dist" Importance="high" />
 		<Copy SourceFiles="$(TargetDir)$(TargetFileName)" DestinationFolder="$(RootDir)/dist/Renderer/Mods" ContinueOnError="true" />
 		<Copy SourceFiles="@(InterprocessBinFiles)" DestinationFolder="$(RootDir)/dist/$(RendererSubPath)/Renderite.Renderer_Data/Managed" ContinueOnError="true" />
-		<Copy SourceFiles="$(RootDir)/interprocess/src/libsemwine/libsemwine.dll.so" DestinationFolder="$(RootDir)/dist/$(RendererSubPath)/Renderite.Renderer_Data/Managed" ContinueOnError="true" />
+		<Copy SourceFiles="$(RootDir)/interprocess/src/shmbridge/shmbridge.dll.so" DestinationFolder="$(RootDir)/dist/$(RendererSubPath)/Renderite.Renderer_Data/Managed" ContinueOnError="true" />
 	</Target>
 
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(CopyToMods)'=='true'">
 		<Message Text="Attempting to copy $(TargetFileName) to $(ResonitePath)Mods" Importance="high" />
 		<Copy SourceFiles="$(TargetDir)$(TargetFileName)" DestinationFolder="$(ResonitePath)Mods" ContinueOnError="true" />
 		<Copy SourceFiles="@(InterprocessBinFiles)" DestinationFolder="$(ResonitePath)/Renderite.Renderer_Data/Managed" ContinueOnError="true" />
-		<Copy SourceFiles="$(RootDir)/interprocess/src/libsemwine/libsemwine.dll.so" DestinationFolder="$(ResonitePath)/Renderite.Renderer_Data/Managed" ContinueOnError="true" />
+		<Copy SourceFiles="$(RootDir)/interprocess/src/shmbridge/shmbridge.dll.so" DestinationFolder="$(ResonitePath)/Renderite.Renderer_Data/Managed" ContinueOnError="true" />
 	</Target>
 </Project>
