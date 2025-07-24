@@ -34,7 +34,7 @@ chmod +x dotnet-install.sh
 ```
 - Open the Steam properties of Resonite, and set the launch options
 ```sh
-dotnet-runtime/dotnet Resonite.dll > "Logs/$(hostname) - linux-dotnet - $(date +"%F %H_%M_%S").log" 2>&1 # %command%
+dotnet-runtime/dotnet Resonite.dll -DataPath "$HOME/Resonite/Prerelease/Data" -CachePath "$HOME/Resonite/Prerelease/Cache" > "Logs/$(hostname) - linux-dotnet - $(date +"%F %H_%M_%S").log" 2>&1 # %command%
 ```
 - In the Resonite install directory, move all of the contents of the `Renderer` folder into a `Renderite` subfolder
 ```sh
@@ -72,5 +72,5 @@ You should also install additional performance patches in order to get a good ex
 This is a bit more experimental, as it replaces some of the DLLs of the game.
 But this is a real boon for getting more FPS, and some variation of these changes will most likely end up in the official release. 
 
-- Download [the latest release of the native patches](https://github.com/Baplar/ResoniteLinuxSplitteningPatches/releases/download/v0.1.3/NativeProtonPatches.zip).
+- Download [the latest release of the native patches](https://github.com/Baplar/ResoniteLinuxSplitteningPatches/releases/download/v0.1.6/NativeProtonPatches.zip).
 - Extract the contents of the downloaded zip file into your Resonite install folder.
