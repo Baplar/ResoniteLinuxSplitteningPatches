@@ -38,7 +38,7 @@ dotnet-runtime/dotnet Resonite.dll > "Logs/$(hostname) - linux-dotnet - $(date +
 ```
 - this launch options requires Logs folder,so create before launch it
 ```sh
-cd $HOME/.local/share/Steam/steamapps/common/Resonite/Renderer
+cd $HOME/.local/share/Steam/steamapps/common/Resonite
 mkdir -p Logs
 ```
 - In the Resonite install directory, move all of the contents of the `Renderer` folder into a `Renderite` subfolder
