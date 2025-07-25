@@ -34,7 +34,9 @@ chmod +x dotnet-install.sh
 ```sh
 dotnet-runtime/dotnet Resonite.dll > "Logs/$(hostname) - linux-dotnet - $(date +"%F %H_%M_%S").log" 2>&1 # %command%
 ```
-- this launch options requires Logs folder,so create before launch it
+- This launch options requires that the `Logs` folder already exists.
+  If you already launched the game before the pre-release, it should already be there.
+  If it does not exist yet, you need to create it:
 ```sh
 cd $HOME/.local/share/Steam/steamapps/common/Resonite
 mkdir -p Logs
