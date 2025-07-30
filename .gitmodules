@@ -5,7 +5,6 @@
 [submodule "interprocess"]
 	path = interprocess
 	url = https://github.com/baplar/interprocess.git
-	branch = libsemwine
 [submodule "Wine-ShmBridge"]
 	path = Wine-ShmBridge
 	url = https://github.com/Yellow-Dog-Man/Wine-ShmBridge.git

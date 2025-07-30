@@ -46,6 +46,10 @@
 			<HintPath>$(ResonitePath)Elements.Core.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
+		<Reference Include="Elements.Assets">
+			<HintPath>$(ResonitePath)Elements.Assets.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
 		<Reference Include="Hardware.Info">
 			<HintPath>$(ResonitePath)Hardware.Info.dll</HintPath>
 			<Private>False</Private>
@@ -73,7 +77,7 @@
 		<Copy SourceFiles="$(TargetDir)$(TargetFileName)" DestinationFolder="$(RootDir)/dist/rml_mods" ContinueOnError="true" />
 		<Copy SourceFiles="$(RootDir)/Hardware.Info/Hardware.Info/bin/Debug/netstandard2.0/Hardware.Info.dll" DestinationFolder="$(RootDir)/dist" ContinueOnError="true" />
 		<Copy SourceFiles="@(InterprocessBinFiles)" DestinationFolder="$(RootDir)/dist" ContinueOnError="true" />
-		<Copy SourceFiles="$(RootDir)/Wine-ShmBridge/shmbridge.dll.so" DestinationFolder="$(RootDir)/dist" ContinueOnError="true" />
+		<Copy SourceFiles="$(RootDir)/Wine-ShmBridge/shmbridge.dll.so" DestinationFolder="$(RootDir)/dist/runtimes/win-x64/native" ContinueOnError="true" />
 	</Target>
 
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(CopyToMods)'=='true'">
@@ -81,6 +85,6 @@
 		<Copy SourceFiles="$(TargetDir)$(TargetFileName)" DestinationFolder="$(ResonitePath)rml_mods" ContinueOnError="true" />
 		<Copy SourceFiles="$(RootDir)/Hardware.Info/Hardware.Info/bin/Debug/netstandard2.0/Hardware.Info.dll" DestinationFolder="$(ResonitePath)" ContinueOnError="true" />		
 		<Copy SourceFiles="@(InterprocessBinFiles)" DestinationFolder="$(ResonitePath)" ContinueOnError="true" />
-		<Copy SourceFiles="$(RootDir)/Wine-ShmBridge/shmbridge.dll.so" DestinationFolder="$(RootDir)/dist" ContinueOnError="true" />
+		<Copy SourceFiles="$(RootDir)/Wine-ShmBridge/shmbridge.dll.so" DestinationFolder="$(ResonitePath)runtimes/win-x64/native" ContinueOnError="true" />
 	</Target>
 </Project>

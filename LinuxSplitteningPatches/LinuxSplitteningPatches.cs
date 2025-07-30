@@ -1,7 +1,3 @@
-using System.Reflection;
-
-using Elements.Core;
-
 using HarmonyLib;
 using ResoniteModLoader;
 
