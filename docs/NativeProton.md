@@ -54,7 +54,7 @@ mv -b MonoBleedingEdge Renderite.Renderer* Unity* Renderite
 cd $HOME/.local/share/Steam/steamapps/common/Resonite/Renderer
 cat > Renderite.Renderer.sh <<'EOF'
 #!/usr/bin/env bash
-cd "./Renderer/Renderite" || exit
+cd "./Renderite" || exit
 PROTON_BIN="$HOME/.local/share/Steam/steamapps/common/Proton - Experimental/proton"
 IFS_BACKUP="$IFS"
 IFS=":"
