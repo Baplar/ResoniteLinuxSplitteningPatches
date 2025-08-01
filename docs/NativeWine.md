@@ -49,6 +49,7 @@ You should also install additional performance patches in order to get a good ex
 
 This is a bit more experimental, as it replaces some of the DLLs of the game.
 But this is a real boon for getting more FPS, and some variation of these changes will most likely end up in the official release. 
+This is also currently required in order to try to run the game in VR mode.
 
-- Download [the latest release of the native patches](https://github.com/Baplar/ResoniteLinuxSplitteningPatches/releases/download/v0.1.7/NativeWinePatches.zip).
+- Download [the latest release of the native patches](https://github.com/Baplar/ResoniteLinuxSplitteningPatches/releases/download/v0.1.8/NativeWinePatches.zip).
 - Extract the contents of the downloaded zip file into your Resonite install folder.
