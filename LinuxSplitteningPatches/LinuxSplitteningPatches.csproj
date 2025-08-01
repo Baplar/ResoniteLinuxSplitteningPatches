@@ -54,6 +54,10 @@
 			<HintPath>$(ResonitePath)Hardware.Info.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
+		<Reference Include="WindowsInput">
+			<HintPath>$(ResonitePath)WindowsInput.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
 		<Reference Include="Renderite.Shared">
 			<HintPath>$(ResonitePath)Renderite.Shared.dll</HintPath>
 			<Private>False</Private>
