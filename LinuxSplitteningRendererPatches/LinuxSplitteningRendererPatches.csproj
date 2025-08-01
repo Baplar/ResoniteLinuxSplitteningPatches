@@ -17,7 +17,7 @@
 		<ResonitePath>$(MSBuildThisFileDirectory)Resonite/</ResonitePath>
 		<ResonitePath Condition="Exists('C:\Program Files (x86)\Steam\steamapps\common\Resonite\Renderer\')">C:\Program Files (x86)\Steam\steamapps\common\Resonite\Renderer\</ResonitePath>
 		<ResonitePath Condition="Exists('$(HOME)/.steam/steam/steamapps/common/Resonite/Renderer/')">$(HOME)/.steam/steam/steamapps/common/Resonite/Renderer/</ResonitePath>
-		<ResonitePath Condition="Exists('$(ResonitePath)/Renderite/Renderite.Renderer.exe')">$(ResonitePath)/Renderite/</ResonitePath>
+		<ResonitePath Condition="Exists('$(ResonitePath)/Renderite/Renderite.Renderer.exe')">$(ResonitePath)Renderite/</ResonitePath>
 	</PropertyGroup>
 
 	<PropertyGroup>
