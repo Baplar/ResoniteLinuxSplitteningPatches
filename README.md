@@ -27,6 +27,9 @@ This can be solved by using [this mod](https://github.com/Baplar/ResoniteLinuxSp
 This mod requires having installed a version of the [Resonite Mod Loader](https://github.com/resonite-modding-group/ResoniteModLoader) compatible with post-Splittening Resonite.
 If you do not have it installed already, we recommend you to use [our updated build of the mod loader](https://github.com/Baplar/ResoniteLinuxSplitteningPatches/releases/download/v0.1.9/RML_Splittening.zip).
 
+Make sure you have no other mods (unless they were also updated for the Splittening),
+and add `-LoadAssembly Libraries/ResoniteModLoader.dll` to your Steam launch options to enable RML.
+
 ### YouTube videos
 As of today, the Linux version of Resonite still uses an old path for the location of yt-dlp, the tool used for loading YouTube videos.
 In order for videos to load, you need to:

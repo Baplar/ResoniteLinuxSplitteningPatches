@@ -9,6 +9,38 @@ dos2unix Resonite.sh dotnet-install.sh
 - Install a version of the [Resonite Mod Loader](https://github.com/resonite-modding-group/ResoniteModLoader) compatible with post-Splittening Resonite. We recommend you to use [our updated build of the mod loader](https://github.com/Baplar/ResoniteLinuxSplitteningPatches/releases/download/v0.1.9/RML_Splittening.zip).
 - Download and extract [the LinuxSplitteningPatches mod](https://github.com/Baplar/ResoniteLinuxSplitteningPatches/releases/download/v0.1.9/LinuxSplitteningPatches.zip). This is necessary to patch a couple of functions in FrooxEngine that use libraries which do not behave well under Proton (DES cipher, uTouchInjection).
 - Download and extract [the LinuxSplitteningRendererPatches mod](https://github.com/Baplar/ResoniteLinuxSplitteningPatches/releases/download/v0.1.9/LinuxSplitteningRendererPatches.zip). This is necessary to patch the Unity renderer’s watchdog, which can not detect that the main process is still running if it is running in Proton. It also fixes an issue with the Hardware.Info library not being able to compute the number of CPU cores in Wine.
+- Edit Resonite.sh to launch the main DLL under Proton instead of system dotnet 
+```sh
+patch -u << "EOF"
+--- Resonite.sh	2025-08-08 00:22:39.530780185 +0200
++++ Resonite.sh	2025-08-08 01:38:14.434693170 +0200
+@@ -93,7 +93,19 @@
+ 
+ 	# ~ Launch Resonite! :) ~
+ 
+-	dotnet Resonite.dll "$@"
++	# dotnet Resonite.dll "$@"
++
++	PROTON_BIN="$HOME/.local/share/Steam/steamapps/common/Proton - Experimental/proton"
++	IFS_BACKUP="$IFS"
++	IFS=":"
++	for COMPAT_PATH in $STEAM_COMPAT_TOOL_PATHS; do
++		if [ -f "$COMPAT_PATH/proton" ]; then
++			PROTON_BIN="$COMPAT_PATH/proton"
++		fi 
++	done
++	IFS="$IFS_BACKUP"
++	echo "Using proton binary: $PROTON_BIN"
++	exec "$PROTON_BIN" run "$STEAM_COMPAT_DATA_PATH/pfx/drive_c/Program Files/dotnet/dotnet.exe" Resonite.dll "$@"
+ }
+ 
+ main "$@"
+EOF
+```
+- Add the required DLLs to your launch options to load both RML and MelonLoader
+```sh
+WINEDLLOVERRIDES="version=n,b" %command% -LoadAssembly Libraries/ResoniteModLoader.dll
+```
 
 ## Credits
 
