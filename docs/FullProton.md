@@ -2,29 +2,13 @@
 
 _All of the paths in the code snippets below assume your Steam library is setup at the default location `$HOME/.local/share/Steam/steamapps`. If your setup is different, adapt the paths accordingly._
 
-- (Recommended) Back up your Proton prefix
+- Fix the line break formatting of the Linux shell scripts (same as for the native setup)
 ```sh
-  cp $HOME/.local/share/Steam/steamapps/compatdata/2519830{,-release}
+dos2unix Resonite.sh dotnet-install.sh
 ```
-- (Optional) Delete the Proton prefix to start with a fresh prefix
-  (_this may prevent winetricks from failing to install .NET 4.0_)
-```
-  rm -rf $HOME/.local/share/Steam/steamapps/compatdata/2519830
-```
-- Launch Resonite normally, to let it "warm up" the prefix with the required dependencies
-- Setup the necessary additional dependencies in your Proton prefix with winetricks:
-  ```sh
-  WINEPREFIX="$HOME/.local/share/Steam/steamapps/compatdata/2519830/pfx" winetricks dxvk winhttp vcrun2022 dotnet48 dotnetdesktop9
-  ```
-  _If the installation of .NET 4.0 or 4.5 fails, you can try to delete the prefix and start again on a new fresh prefix._
-- Download [the latest release of the proton patches](https://github.com/Baplar/ResoniteLinuxSplitteningPatches/releases/download/v0.1.8/FullProtonPatches.zip).
-  It includes the patched libraries, as well as [ResoniteModLoader](https://github.com/resonite-modding-group/ResoniteModLoader/releases) (used to patch FrooxEngine) and [MelonLoader](https://melonwiki.xyz/) (used to patch the Unity renderer).
-- Extract the contents of the downloaded zip file into your Resonite install folder.
-- Set your launch options to run both ResoniteModLoader and MelonLoader
-```sh
-WINEDLLOVERRIDES="version=n,b" %command% -LoadAssembly Libraries/ResoniteModLoader.dll -DataPath "$HOME/Resonite/Prerelease/Data" -CachePath "$HOME/Resonite/Prerelease/Cache" > "Logs/$(hostname) - linux-dotnet - $(date +"%F %H_%M_%S").log" 2>&1
-```
-- Start the game. If you want to verify that the mod is working you can check your Resonite logs.
+- Install a version of the [Resonite Mod Loader](https://github.com/resonite-modding-group/ResoniteModLoader) compatible with post-Splittening Resonite. We recommend you to use [our updated build of the mod loader](https://github.com/Baplar/ResoniteLinuxSplitteningPatches/releases/download/v0.1.9/RML_Splittening.zip).
+- Download and extract [the LinuxSplitteningPatches mod](https://github.com/Baplar/ResoniteLinuxSplitteningPatches/releases/download/v0.1.9/LinuxSplitteningPatches.zip). This is necessary to patch a couple of functions in FrooxEngine that use libraries which do not behave well under Proton (DES cipher, uTouchInjection).
+- Download and extract [the LinuxSplitteningRendererPatches mod](https://github.com/Baplar/ResoniteLinuxSplitteningPatches/releases/download/v0.1.9/LinuxSplitteningRendererPatches.zip). This is necessary to patch the Unity renderer’s watchdog, which can not detect that the main process is still running if it is running in Proton. It also fixes an issue with the Hardware.Info library not being able to compute the number of CPU cores in Wine.
 
 ## Credits
 

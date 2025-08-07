@@ -2,9 +2,7 @@
 	path = Hardware.Info
 	url = https://github.com/bredo228/Hardware.Info.git
 	branch = janky
-[submodule "interprocess"]
-	path = interprocess
-	url = https://github.com/baplar/interprocess.git
-[submodule "Wine-ShmBridge"]
-	path = Wine-ShmBridge
-	url = https://github.com/Yellow-Dog-Man/Wine-ShmBridge.git
+[submodule "ResoniteModLoader"]
+	path = ResoniteModLoader
+	url = https://github.com/Baplar/ResoniteModLoader.git
+	branch = Splittening-Net9

@@ -46,31 +46,19 @@
 			<HintPath>$(ResonitePath)Renderite.Renderer_Data/Managed/Renderite.Shared.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
-		<Reference Include="Cloudtoid.Interprocess">
-			<HintPath>$(ResonitePath)Renderite.Renderer_Data/Managed/YellowDogMan.Cloudtoid.Interprocess.dll</HintPath>
-			<Private>False</Private>
-		</Reference>
 		<Reference Include="UnityEngine.CoreModule">
 			<HintPath>$(ResonitePath)Renderite.Renderer_Data/Managed/UnityEngine.CoreModule.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
 	</ItemGroup>
 
-	<ItemGroup>
-        <InterprocessBinFiles Include="$(RootDir)/interprocess/src/Interprocess/bin/Debug/netstandard2.0/YellowDogMan.Cloudtoid.Interprocess.*" />
-    </ItemGroup>
-
 	<Target Name="CopyToBin" AfterTargets="PostBuildEvent">
 		<Message Text="Copying $(TargetFileName) to $(RootDir)/dist" Importance="high" />
 		<Copy SourceFiles="$(TargetDir)$(TargetFileName)" DestinationFolder="$(RootDir)/dist/Renderer/Mods" ContinueOnError="true" />
-		<Copy SourceFiles="@(InterprocessBinFiles)" DestinationFolder="$(RootDir)/dist/$(RendererSubPath)/Renderite.Renderer_Data/Managed" ContinueOnError="true" />
-		<Copy SourceFiles="$(RootDir)/Wine-ShmBridge/shmbridge.dll.so" DestinationFolder="$(RootDir)/dist/$(RendererSubPath)/Renderite.Renderer_Data/Managed" ContinueOnError="true" />
 	</Target>
 
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(CopyToMods)'=='true'">
 		<Message Text="Attempting to copy $(TargetFileName) to $(ResonitePath)Mods" Importance="high" />
 		<Copy SourceFiles="$(TargetDir)$(TargetFileName)" DestinationFolder="$(ResonitePath)Mods" ContinueOnError="true" />
-		<Copy SourceFiles="@(InterprocessBinFiles)" DestinationFolder="$(ResonitePath)/Renderite.Renderer_Data/Managed" ContinueOnError="true" />
-		<Copy SourceFiles="$(RootDir)/Wine-ShmBridge/shmbridge.dll.so" DestinationFolder="$(ResonitePath)/Renderite.Renderer_Data/Managed" ContinueOnError="true" />
 	</Target>
 </Project>

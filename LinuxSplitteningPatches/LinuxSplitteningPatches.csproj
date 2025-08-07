@@ -27,7 +27,7 @@
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="HarmonyLib">
-			<HintPath>$(ResonitePath)rml_libs\0Harmony.dll</HintPath>
+			<HintPath>$(ResonitePath)rml_libs\0Harmony-Net9.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="Resonite">
@@ -62,33 +62,21 @@
 			<HintPath>$(ResonitePath)Renderite.Shared.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
-		<Reference Include="Cloudtoid.Interprocess">
-			<HintPath>$(ResonitePath)YellowDogMan.Cloudtoid.Interprocess.dll</HintPath>
-			<Private>False</Private>
-		</Reference>
 	</ItemGroup>
 
 	<ItemGroup>
 	  <PackageReference Include="BouncyCastle.Cryptography" Version="2.6.1" />
 	</ItemGroup>
 
-	<ItemGroup>
-        <InterprocessBinFiles Include="$(RootDir)/interprocess/src/Interprocess/bin/Debug/net9.0/YellowDogMan.Cloudtoid.Interprocess.*" />
-    </ItemGroup>
-
 	<Target Name="CopyToBin" AfterTargets="PostBuildEvent">
 		<Message Text="Copying $(TargetFileName) to $(RootDir)/dist" Importance="high" />
 		<Copy SourceFiles="$(TargetDir)$(TargetFileName)" DestinationFolder="$(RootDir)/dist/rml_mods" ContinueOnError="true" />
-		<Copy SourceFiles="$(RootDir)/Hardware.Info/Hardware.Info/bin/Debug/netstandard2.0/Hardware.Info.dll" DestinationFolder="$(RootDir)/dist" ContinueOnError="true" />
-		<Copy SourceFiles="@(InterprocessBinFiles)" DestinationFolder="$(RootDir)/dist" ContinueOnError="true" />
-		<Copy SourceFiles="$(RootDir)/Wine-ShmBridge/shmbridge.dll.so" DestinationFolder="$(RootDir)/dist/runtimes/win-x64/native" ContinueOnError="true" />
+		<Copy SourceFiles="$(RootDir)/Hardware.Info/Hardware.Info/bin/$(Configuration)/netstandard2.0/Hardware.Info.dll" DestinationFolder="$(RootDir)/dist" ContinueOnError="true" />
 	</Target>
 
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(CopyToMods)'=='true'">
 		<Message Text="Attempting to copy $(TargetFileName) to $(ResonitePath)rml_mods" Importance="high" />
 		<Copy SourceFiles="$(TargetDir)$(TargetFileName)" DestinationFolder="$(ResonitePath)rml_mods" ContinueOnError="true" />
-		<Copy SourceFiles="$(RootDir)/Hardware.Info/Hardware.Info/bin/Debug/netstandard2.0/Hardware.Info.dll" DestinationFolder="$(ResonitePath)" ContinueOnError="true" />		
-		<Copy SourceFiles="@(InterprocessBinFiles)" DestinationFolder="$(ResonitePath)" ContinueOnError="true" />
-		<Copy SourceFiles="$(RootDir)/Wine-ShmBridge/shmbridge.dll.so" DestinationFolder="$(ResonitePath)runtimes/win-x64/native" ContinueOnError="true" />
+		<Copy SourceFiles="$(RootDir)/Hardware.Info/Hardware.Info/bin/$(Configuration)/netstandard2.0/Hardware.Info.dll" DestinationFolder="$(ResonitePath)" ContinueOnError="true" />
 	</Target>
 </Project>
