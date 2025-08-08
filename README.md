@@ -2,23 +2,17 @@
 
 A set of tweaks for [Resonite](https://resonite.com/) to allow the pre-release Splittening builds to run as well as possible on Linux.
 
-The current pre-release can now be started on Linux almost out of the box! It only requires a few manual tricks.
+The current pre-release can now be started on Linux out of the box! It only requires a few manual tricks for specific use cases.
 
 ## Native Linux build
 
 It is possible to run the main FrooxEngine process in the native Linux .NET runtime, while only the Unity renderer will still run in Wine or Proton.
 
-This is going to be the approach that is taken for the official release of the Splittening, and thus we recommend this method.
-
-This works almost out of the box, but there is still a small bug with Steam using the incorrect line break format for the Linux shell scripts.
-This can be easily fixed by running a simple command in the Resonite install directory:
-```sh
-dos2unix Resonite.sh dotnet-install.sh
-```
+It works out of the box today, and it is going to be the approach that is taken for the official release of the Splittening, thus we strongly recommend this method.
 
 - Please note that, in addition to all the known bugs still being fixed on the pre-release build, there are a couple of features that work on Windows but not yet on Linux. Notably:
-  - Audio output does not work, the CSCore library currently used only supports Windows. SDL is currently being implemented to replace it, which will bring a cross-platform audio backend into Resonite.
-  - The clipboard OS integration does not work either. Work has not started on this aspect quite yet as of writing this documentation (2025-08-07), but it might end up being implemented using SDL as well.
+  - Audio output does not work, the CSCore library currently used only supports Windows. [SDL is currently being implemented to replace it](https://github.com/Yellow-Dog-Man/Resonite-Issues/issues/4975).
+  - The clipboard OS integration does not work either. [SDL is currently being implemented for this as well](https://github.com/Yellow-Dog-Man/Resonite-Issues/issues/4974).
 
 ### VR mode
 As of today, VR mode crashes almost instantly due to a library only being available on Windows (SRAnipal).
