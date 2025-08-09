@@ -10,6 +10,9 @@ It is possible to run the main FrooxEngine process in the native Linux .NET runt
 
 It works almost out of the box today, and it is going to be the approach that is taken for the official release of the Splittening, thus we strongly recommend this method.
 
+Make sure to explicitly select a Proton version in the Compatibility menu of the Steam properties for Resonite. We recommend the latest stable (9.0-4 as of today) or Experimental.
+![Steam Library > Resonite > Right click > Properties > Compatibility > Force the use of a specific Steam Play compatibility tool > Select a Proton version of your choice](docs/Proton%20compatibility%20tool.png)
+
 As of today, there is still [a small bug](https://github.com/Yellow-Dog-Man/Resonite-Issues/issues/5118) causing an incorrect line break format for the Linux shell scripts.
 This can be easily fixed by running a simple command in the Resonite install directory:
 ```sh
