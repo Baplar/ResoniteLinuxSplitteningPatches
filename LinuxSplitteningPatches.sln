@@ -11,12 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hardware.Info", "Hardware.I
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hardware.Info", "Hardware.Info\Hardware.Info\Hardware.Info.csproj", "{2E72B882-1EA8-4CED-8BCF-250316B2289C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "interprocess", "interprocess", "{50B76142-F788-4680-A452-B2FE161220E5}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1A5C892E-56F1-4BCF-A44A-824513E2C644}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interprocess", "interprocess\src\Interprocess\Interprocess.csproj", "{99C429CE-F8C0-40E5-852F-9D83A422FAB8}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

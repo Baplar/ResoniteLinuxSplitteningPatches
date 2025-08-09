@@ -8,15 +8,20 @@ The current pre-release can now be started on Linux out of the box! It only requ
 
 It is possible to run the main FrooxEngine process in the native Linux .NET runtime, while only the Unity renderer will still run in Wine or Proton.
 
-It works out of the box today, and it is going to be the approach that is taken for the official release of the Splittening, thus we strongly recommend this method.
+It works almost out of the box today, and it is going to be the approach that is taken for the official release of the Splittening, thus we strongly recommend this method.
+
+As of today, there is still [a small bug](https://github.com/Yellow-Dog-Man/Resonite-Issues/issues/5118) causing an incorrect line break format for the Linux shell scripts.
+This can be easily fixed by running a simple command in the Resonite install directory:
+```sh
+dos2unix Resonite.sh dotnet-install.sh
+```
 
 - Please note that, in addition to all the known bugs still being fixed on the pre-release build, there are a couple of features that work on Windows but not yet on Linux. Notably:
-  - Audio output does not work, the CSCore library currently used only supports Windows. [SDL is currently being implemented to replace it](https://github.com/Yellow-Dog-Man/Resonite-Issues/issues/4975).
-  - The clipboard OS integration does not work either. [SDL is currently being implemented for this as well](https://github.com/Yellow-Dog-Man/Resonite-Issues/issues/4974).
+  - The clipboard does not work on Linux yet. [SDL is currently being implemented to support this feature on Linux](https://github.com/Yellow-Dog-Man/Resonite-Issues/issues/4974).
 
 ### VR mode
 As of today, VR mode crashes almost instantly due to a library only being available on Windows (SRAnipal).
-This can be solved by using [this mod](https://github.com/Baplar/ResoniteLinuxSplitteningPatches/releases/download/v0.1.9/LinuxSplitteningPatches.zip).
+Until [this issue is solved](https://github.com/Yellow-Dog-Man/Resonite-Issues/issues/5069), this can be worked around by using [this mod](https://github.com/Baplar/ResoniteLinuxSplitteningPatches/releases/download/v0.1.9/LinuxSplitteningPatches.zip).
 
 This mod requires having installed a version of the [Resonite Mod Loader](https://github.com/resonite-modding-group/ResoniteModLoader) compatible with post-Splittening Resonite.
 If you do not have it installed already, we recommend you to use [our updated build of the mod loader](https://github.com/Baplar/ResoniteLinuxSplitteningPatches/releases/download/v0.1.9/RML_Splittening.zip).
@@ -26,7 +31,7 @@ and add `-LoadAssembly Libraries/ResoniteModLoader.dll` to your Steam launch opt
 
 ### YouTube videos
 As of today, the Linux version of Resonite still uses an old path for the location of yt-dlp, the tool used for loading YouTube videos.
-In order for videos to load, you need to:
+Until [this issue is solved](https://github.com/Yellow-Dog-Man/Resonite-Issues/issues/4998), in order for videos to load, you need to:
 - Download [the latest version of yt-dlp](https://github.com/yt-dlp/yt-dlp-nightly-builds/releases/latest/download/yt-dlp)
 - Place it inside the Resonite install folder and rename it `youtube-dl`
 
