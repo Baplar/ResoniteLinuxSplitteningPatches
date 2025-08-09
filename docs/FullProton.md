@@ -2,9 +2,8 @@
 
 _All of the paths in the code snippets below assume your Steam library is setup at the default location `$HOME/.local/share/Steam/steamapps`. If your setup is different, adapt the paths accordingly._
 
-- Install a version of the [Resonite Mod Loader](https://github.com/resonite-modding-group/ResoniteModLoader) compatible with post-Splittening Resonite. We recommend you to use [our updated build of the mod loader](https://github.com/Baplar/ResoniteLinuxSplitteningPatches/releases/download/v0.1.9/RML_Splittening.zip).
-- Download and extract [the LinuxSplitteningPatches mod](https://github.com/Baplar/ResoniteLinuxSplitteningPatches/releases/download/v0.1.9/LinuxSplitteningPatches.zip). This is necessary to patch a couple of functions in FrooxEngine that use libraries which do not behave well under Proton (DES cipher, uTouchInjection).
-- Download and extract [the LinuxSplitteningRendererPatches mod](https://github.com/Baplar/ResoniteLinuxSplitteningPatches/releases/download/v0.1.9/LinuxSplitteningRendererPatches.zip). This is necessary to patch the Unity renderer’s watchdog, which can not detect that the main process is still running if it is running in Proton. It also fixes an issue with the Hardware.Info library not being able to compute the number of CPU cores in Wine.
+- Install a version of the [Resonite Mod Loader](https://github.com/resonite-modding-group/ResoniteModLoader) compatible with post-Splittening Resonite. We recommend you to use [our updated build of the mod loader](https://github.com/Baplar/ResoniteLinuxSplitteningPatches/releases/download/v0.1.10/RML_Splittening.zip).
+- Download and extract [the LinuxSplitteningPatches mod](https://github.com/Baplar/ResoniteLinuxSplitteningPatches/releases/download/v0.1.10/FullProtonSplitteningPatches.zip). This is necessary to patch a couple of functions in FrooxEngine which do not behave well under Proton (DES cipher, uTouchInjection, Unity renderer watchdog, Hardware.Info CPU core info fetcher).
 - Edit Resonite.sh to launch the main DLL under Proton instead of system dotnet 
 ```sh
 patch -u << "EOF"
