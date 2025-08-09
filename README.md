@@ -38,10 +38,11 @@ Until [this issue is solved](https://github.com/Yellow-Dog-Man/Resonite-Issues/i
 - Download [the latest version of yt-dlp](https://github.com/yt-dlp/yt-dlp-nightly-builds/releases/latest/download/yt-dlp)
 - Place it inside the Resonite install folder and rename it `youtube-dl`
 
+
 ## Full Proton build *(advanced users)*
 
-It is also possible to run all the Resonite processes [directly within Proton](docs/FullProton.md).
+Although we strongly discourage you to do it unless you know exactly what you’re doing, it is technically still possible to run the main Resonite process [directly within Proton](docs/FullProton.md).
 
 This method requires a bit of tinkering to get working, and is going to be abandoned for the official release of the Splittening.
 
-However, in the meantime, it has the benefit of not suffering from the handful of .NET libraries used by FrooxEngine that do not support Linux. Notably, the clipboard and visemes work in this setup.
+However, in the meantime, it has the small benefit of not suffering from the handful of .NET libraries used by FrooxEngine that do not support Linux. Notably, the clipboard and visemes work in this setup.
