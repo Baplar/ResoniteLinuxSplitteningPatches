@@ -1,5 +1,11 @@
 # Full Proton setup
 
+Although we strongly discourage you to do it unless you know exactly what you’re doing, it is technically still possible to run the main Resonite process [directly within Proton](docs/FullProton.md).
+
+This method requires a bit of tinkering to get working, and is going to be abandoned for the official release of the Splittening.
+
+However, in the meantime, it has the small benefit of not suffering from the handful of .NET libraries used by FrooxEngine that do not support Linux. Notably, the clipboard and visemes work in this setup.
+
 _All of the paths in the code snippets below assume your Steam library is setup at the default location `$HOME/.local/share/Steam/steamapps`. If your setup is different, adapt the paths accordingly._
 
 - Install a version of the [Resonite Mod Loader](https://github.com/resonite-modding-group/ResoniteModLoader) compatible with post-Splittening Resonite. We recommend you to use [our updated build of the mod loader](https://github.com/Baplar/ResoniteLinuxSplitteningPatches/releases/download/v0.1.10/RML_Splittening.zip).
@@ -13,8 +19,8 @@ patch -u << "EOF"
  
  	# ~ Launch Resonite! :) ~
  
--	dotnet Resonite.dll "$@"
-+	# dotnet Resonite.dll "$@"
+-	dotnet Renderite.Host.dll "$@"
++	# dotnet Renderite.Host.dll "$@"
 +
 +	PROTON_BIN="$HOME/.local/share/Steam/steamapps/common/Proton - Experimental/proton"
 +	IFS_BACKUP="$IFS"
@@ -26,7 +32,7 @@ patch -u << "EOF"
 +	done
 +	IFS="$IFS_BACKUP"
 +	echo "Using proton binary: $PROTON_BIN"
-+	exec "$PROTON_BIN" run "$STEAM_COMPAT_DATA_PATH/pfx/drive_c/Program Files/dotnet/dotnet.exe" Resonite.dll "$@"
++	exec "$PROTON_BIN" run "$STEAM_COMPAT_DATA_PATH/pfx/drive_c/Program Files/dotnet/dotnet.exe" Renderite.Host.dll "$@"
  }
  
  main "$@"

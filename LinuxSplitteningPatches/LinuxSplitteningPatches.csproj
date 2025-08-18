@@ -42,6 +42,18 @@
 			<HintPath>$(ResonitePath)FrooxEngine.Store.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
+		<Reference Include="SkyFrost.Base.Models">
+			<HintPath>$(ResonitePath)SkyFrost.Base.Models.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="SDL3-CS">
+			<HintPath>$(ResonitePath)SDL3-CS.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="SDL3-CS.Native">
+			<HintPath>$(ResonitePath)SDL3-CS.Native.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
 		<Reference Include="Elements.Core">
 			<HintPath>$(ResonitePath)Elements.Core.dll</HintPath>
 			<Private>False</Private>
