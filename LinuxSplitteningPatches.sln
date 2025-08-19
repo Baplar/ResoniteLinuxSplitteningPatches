@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hardware.Info", "Hardware.I
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hardware.Info", "Hardware.Info\Hardware.Info\Hardware.Info.csproj", "{2E72B882-1EA8-4CED-8BCF-250316B2289C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JankyLinuxClipboard", "JankyLinuxClipboard\JankyLinuxClipboard.csproj", "{BA71BABE-8282-4C61-9026-4377F50A0B85}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{99C429CE-F8C0-40E5-852F-9D83A422FAB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99C429CE-F8C0-40E5-852F-9D83A422FAB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99C429CE-F8C0-40E5-852F-9D83A422FAB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA71BABE-8282-4C61-9026-4377F50A0B85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA71BABE-8282-4C61-9026-4377F50A0B85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA71BABE-8282-4C61-9026-4377F50A0B85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA71BABE-8282-4C61-9026-4377F50A0B85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

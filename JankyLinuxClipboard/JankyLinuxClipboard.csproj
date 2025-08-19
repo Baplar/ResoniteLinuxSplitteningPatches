@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<RootNamespace>LinuxSplitteningPatches</RootNamespace>
-		<AssemblyName>LinuxSplitteningPatches</AssemblyName>
+		<RootNamespace>JankyLinuxClipboard</RootNamespace>
+		<AssemblyName>JankyLinuxClipboard</AssemblyName>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<TargetFramework>net9.0</TargetFramework>
 		<FileAlignment>512</FileAlignment>
@@ -19,6 +19,7 @@
 		<ResonitePath>$(MSBuildThisFileDirectory)Resonite/</ResonitePath>
 		<ResonitePath Condition="Exists('C:\Program Files (x86)\Steam\steamapps\common\Resonite\')">C:\Program Files (x86)\Steam\steamapps\common\Resonite\</ResonitePath>
 		<ResonitePath Condition="Exists('$(HOME)/.steam/steam/steamapps/common/Resonite/')">$(HOME)/.steam/steam/steamapps/common/Resonite/</ResonitePath>
+		<ResonitePath Condition="Exists('$(HOME)/Games/Resonite-PreRelease/Resonite/')">$(HOME)/Games/Resonite-PreRelease/Resonite/</ResonitePath>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -46,6 +47,14 @@
 			<HintPath>$(ResonitePath)SkyFrost.Base.Models.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
+		<Reference Include="SDL3-CS">
+			<HintPath>$(ResonitePath)SDL3-CS.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="SDL3-CS.Native">
+			<HintPath>$(ResonitePath)SDL3-CS.Native.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
 		<Reference Include="Elements.Core">
 			<HintPath>$(ResonitePath)Elements.Core.dll</HintPath>
 			<Private>False</Private>
@@ -54,33 +63,19 @@
 			<HintPath>$(ResonitePath)Elements.Assets.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
-		<Reference Include="Hardware.Info">
-			<HintPath>$(ResonitePath)Hardware.Info.dll</HintPath>
-			<Private>False</Private>
-		</Reference>
-		<Reference Include="WindowsInput">
-			<HintPath>$(ResonitePath)WindowsInput.dll</HintPath>
-			<Private>False</Private>
-		</Reference>
 		<Reference Include="Renderite.Shared">
 			<HintPath>$(ResonitePath)Renderite.Shared.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
 	</ItemGroup>
 
-	<ItemGroup>
-	  <PackageReference Include="BouncyCastle.Cryptography" Version="2.6.1" />
-	</ItemGroup>
-
 	<Target Name="CopyToBin" AfterTargets="PostBuildEvent">
 		<Message Text="Copying $(TargetFileName) to $(RootDir)/dist" Importance="high" />
 		<Copy SourceFiles="$(TargetDir)$(TargetFileName)" DestinationFolder="$(RootDir)/dist/rml_mods" ContinueOnError="true" />
-		<Copy SourceFiles="$(RootDir)/Hardware.Info/Hardware.Info/bin/$(Configuration)/netstandard2.0/Hardware.Info.dll" DestinationFolder="$(RootDir)/dist" ContinueOnError="true" />
 	</Target>
 
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(CopyToMods)'=='true'">
 		<Message Text="Attempting to copy $(TargetFileName) to $(ResonitePath)rml_mods" Importance="high" />
 		<Copy SourceFiles="$(TargetDir)$(TargetFileName)" DestinationFolder="$(ResonitePath)rml_mods" ContinueOnError="true" />
-		<Copy SourceFiles="$(RootDir)/Hardware.Info/Hardware.Info/bin/$(Configuration)/netstandard2.0/Hardware.Info.dll" DestinationFolder="$(ResonitePath)" ContinueOnError="true" />
 	</Target>
 </Project>

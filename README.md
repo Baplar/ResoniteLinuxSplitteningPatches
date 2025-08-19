@@ -19,7 +19,7 @@ Make sure to explicitly select a Proton version in the Compatibility menu of the
 The clipboard does not work on Linux yet, because it currently depends on Windows-specific API functions provided by the .NET runtime.
 [SDL is currently being implemented to support this feature on Linux](https://github.com/Yellow-Dog-Man/Resonite-Issues/issues/4974).
 
-In the meantime, there is a small RML mod that supports only basic plain-text copy from desktop to Resonite, to get at least some basic functionality working. You can download it [here](https://github.com/Baplar/ResoniteLinuxSplitteningPatches/releases/download/v0.1.10/LinuxSplitteningPatches.dll).
+In the meantime, there is a small RML mod that supports only basic plain-text copy from desktop to Resonite, to get at least some basic functionality working. You can download it [here](https://github.com/Baplar/ResoniteLinuxSplitteningPatches/releases/download/v0.1.10/JankyLinuxClipboard.dll).
 If you don’t have Resonite Mod Loader installed yet, you can find a compiled build of it [here](https://github.com/Baplar/ResoniteLinuxSplitteningPatches/releases/download/v0.1.10/RML_Splittening.zip).
 
 #### Visemes

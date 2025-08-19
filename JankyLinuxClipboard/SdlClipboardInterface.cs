@@ -7,7 +7,7 @@ using FrooxEngine;
 
 using SDL3;
 
-namespace LinuxSplitteningPatches;
+namespace JankyLinuxClipboard;
 
 
 public class SdlClipboardInterface : IClipboardInterface {

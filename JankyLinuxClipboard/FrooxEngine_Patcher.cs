@@ -3,12 +3,12 @@ using Elements.Core;
 using FrooxEngine;
 using SDL3;
 
-namespace LinuxSplitteningPatches;
+namespace JankyLinuxClipboard;
 
-[HarmonyPatch(typeof(Engine), "FinishInitialization", MethodType.Async)]
+[HarmonyPatch(typeof(Engine), "FinishInitialization")]
 public static class FrooxEngine_FinishInitialization_Patch {
     public static void Postfix(ref Engine __instance) {
-        if (__instance.Platform == Platform.Linux) {
+        if (__instance.Platform == Platform.Linux && !__instance.InputInterface.IsClipboardSupported) {
             UniLog.Log("Registering SDL clipboard interface");
             if (!SDL.SetHint(SDL.Hints.VideoDriver, "x11")) {
                 UniLog.Warning("Could not enforce SDL video driver to x11");
