@@ -27,10 +27,6 @@
 			<HintPath>$(ResonitePath)Libraries\ResoniteModLoader.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
-		<Reference Include="HarmonyLib">
-			<HintPath>$(ResonitePath)rml_libs\0Harmony.dll</HintPath>
-			<Private>False</Private>
-		</Reference>
 		<Reference Include="Resonite">
 			<HintPath>$(ResonitePath)Resonite.dll</HintPath>
 			<Private>False</Private>

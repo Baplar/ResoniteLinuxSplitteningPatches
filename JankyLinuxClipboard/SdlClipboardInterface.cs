@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using Elements.Assets;
-
 using FrooxEngine;
 
 using SDL3;
@@ -18,7 +17,7 @@ public class SdlClipboardInterface : IClipboardInterface {
 	public bool ContainsImage => false;
 
 	public Task<string> GetText() {
-		return Task.Run(SDL.GetClipboardText);
+		return Task.FromResult(SDL.GetClipboardText());
 	}
 
 	public Task<List<string>> GetFiles() {
@@ -30,7 +29,7 @@ public class SdlClipboardInterface : IClipboardInterface {
 	}
 
 	public Task<bool> SetText(string text) {
-		return Task.Run(() => SDL.ClearClipboardData() && SDL.SetClipboardText(text));
+		return Task.FromResult(SDL.SetClipboardText(text));
 	}
 
 	public Task<bool> SetBitmap(Bitmap2D bitmap) {

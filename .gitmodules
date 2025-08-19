@@ -1,8 +1,0 @@
-[submodule "Hardware.Info"]
-	path = Hardware.Info
-	url = https://github.com/bredo228/Hardware.Info.git
-	branch = janky
-[submodule "ResoniteModLoader"]
-	path = ResoniteModLoader
-	url = https://github.com/Baplar/ResoniteModLoader.git
-	branch = Splittening-Net9

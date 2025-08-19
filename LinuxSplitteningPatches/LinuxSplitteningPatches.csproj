@@ -54,10 +54,6 @@
 			<HintPath>$(ResonitePath)Elements.Assets.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
-		<Reference Include="Hardware.Info">
-			<HintPath>$(ResonitePath)Hardware.Info.dll</HintPath>
-			<Private>False</Private>
-		</Reference>
 		<Reference Include="WindowsInput">
 			<HintPath>$(ResonitePath)WindowsInput.dll</HintPath>
 			<Private>False</Private>
@@ -75,12 +71,10 @@
 	<Target Name="CopyToBin" AfterTargets="PostBuildEvent">
 		<Message Text="Copying $(TargetFileName) to $(RootDir)/dist" Importance="high" />
 		<Copy SourceFiles="$(TargetDir)$(TargetFileName)" DestinationFolder="$(RootDir)/dist/rml_mods" ContinueOnError="true" />
-		<Copy SourceFiles="$(RootDir)/Hardware.Info/Hardware.Info/bin/$(Configuration)/netstandard2.0/Hardware.Info.dll" DestinationFolder="$(RootDir)/dist" ContinueOnError="true" />
 	</Target>
 
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(CopyToMods)'=='true'">
 		<Message Text="Attempting to copy $(TargetFileName) to $(ResonitePath)rml_mods" Importance="high" />
 		<Copy SourceFiles="$(TargetDir)$(TargetFileName)" DestinationFolder="$(ResonitePath)rml_mods" ContinueOnError="true" />
-		<Copy SourceFiles="$(RootDir)/Hardware.Info/Hardware.Info/bin/$(Configuration)/netstandard2.0/Hardware.Info.dll" DestinationFolder="$(ResonitePath)" ContinueOnError="true" />
 	</Target>
 </Project>
