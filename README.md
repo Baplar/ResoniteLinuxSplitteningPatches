@@ -25,4 +25,8 @@ If you don’t have Resonite Mod Loader installed yet, you can find a compiled b
 #### Visemes
 Visemes (voice-controlled lip animations) can not be computed on Linux.
 Linux players can see visemes on Windows players, and Windows players can see them on everyone, but Linux players can not see their own visemes, nor those of other Linux players.
+
 [Community efforts are being made to find or provide a cross-platform alternative to the Windows-only OVRLipSync library](https://github.com/Yellow-Dog-Man/Resonite-Issues/issues/5151).
+
+In the meantime, there is a small RML mod by KyuubiYoru that implements a form of viseme computation on Linux.
+It is still a work in progress, but you can download the latest release [here](https://github.com/KyuubiYoru/VisemesAtHome/releases/latest).
